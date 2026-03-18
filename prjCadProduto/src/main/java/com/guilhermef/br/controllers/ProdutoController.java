@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,30 +22,32 @@ import com.guilhermef.br.services.ProdutoService;
 @RequestMapping("/produtos")
 public class ProdutoController {
 	private final ProdutoService produtoService;
-	
+
 	@Autowired
 	public ProdutoController(ProdutoService produtoService) {
 		this.produtoService = produtoService;
 	}
-	
-	public ResponseEntity<Produto> criarProduto(@RequestPart("produto") Produto produto, @RequestPart("imagem") MultipartFile imagem) throws IOException{
-		produto.setImagem(imagem.getBytes());
-		
+
+	@PostMapping("/test")
+	public ResponseEntity<Produto> criarProduto(@RequestPart("produto") Produto produto,
+			@RequestPart("thumbnail") MultipartFile thumbnail) throws IOException {
+		produto.setThumbnail(thumbnail.getBytes());
+
 		Produto produtoSalvo = produtoService.saveProduto(produto);
-		
+
 		return ResponseEntity.status(HttpStatus.CREATED).body(produtoSalvo);
 	}
-	
+
 	@DeleteMapping("/delete/{id}")
 	public void deletarProduto(@PathVariable Long id) {
 		produtoService.deleteProdutoById(id);
 	}
-	
+
 	@GetMapping
-	public List<Produto> listarTodosProdutos(){
+	public List<Produto> listarTodosProdutos() {
 		return produtoService.findAllProdutos();
 	}
-	
+
 	@GetMapping("/{id}")
 	public ResponseEntity<Produto> buscarProduto(@PathVariable Long id) {
 		Produto produto = produtoService.getProdutoById(id);
@@ -56,7 +59,5 @@ public class ProdutoController {
 		}
 
 	}
-	
-	
-	
+
 }

@@ -16,29 +16,62 @@ public class Produto {
 	private Long id;
 
 	private String nome;
-	private double preco;
-	private String descricao;
+	private double price;
+	private String description;
 	private String brand;
 	private int stock;
 	private String category;
 
 	@Lob
-	private byte[] imagem;
+	private byte[] thumbnail;
 
 	public Produto() {
 
 	}
 
-	public Produto(Long id, String nome, double preco, String descricao, String brand, int stock, String category,
-			byte[] imagem) {
+	public Produto(Long id, String nome, double price, String description, String brand, int stock, String category,
+			byte[] thumbnail) {
+		super();
 		this.id = id;
 		this.nome = nome;
-		this.preco = preco;
-		this.descricao = descricao;
+		this.price = price;
+		this.description = description;
 		this.brand = brand;
 		this.stock = stock;
 		this.category = category;
-		this.imagem = imagem;
+		this.thumbnail = thumbnail;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public String getBrand() {
@@ -65,40 +98,15 @@ public class Produto {
 		this.category = category;
 	}
 
-	public Long getId() {
-		return id;
+	public byte[] getThumbnail() {
+		return thumbnail;
 	}
 
-	public String getNome() {
-		return nome;
+	public void setThumbnail(byte[] thumbnail) {
+		this.thumbnail = thumbnail;
 	}
+	
+	
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public double getPreco() {
-		return preco;
-	}
-
-	public void setPreco(double preco) {
-		this.preco = preco;
-	}
-
-	public String getDescricao() {
-		return descricao;
-	}
-
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
-
-	public byte[] getImagem() {
-		return imagem;
-	}
-
-	public void setImagem(byte[] imagem) {
-		this.imagem = imagem;
-	}
 
 }

@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const pesquisaForm = document.getElementById("pesquisaForm");
 
-  cadastroForm.addEventListener("submit", cadastrarJogo);
+  cadastroForm.addEventListener("submit", cadastrarProduto);
 
   pesquisaForm.addEventListener("submit", function (e) {
     e.preventDefault();
@@ -15,7 +15,7 @@ function cadastrarProduto(event) {
   event.preventDefault();
 
   const name = document.getElementById("name").value;
-  const price = document.getElementById("price").value;
+  const price =  document.getElementById("price").value;
   const category = document.getElementById("category").value;
   const brand = document.getElementById("brand").value;
   const stock = document.getElementById("stock").value;
@@ -40,12 +40,12 @@ function cadastrarProduto(event) {
 
   formData.append("thumbnail", thumbnail);
 
-  fetch("http://localhost:8080/jogos", {
+  fetch("http://localhost:8080/produtos/test", {
     method: "POST",
     body: formData,
   })
     .then((data) => {
-      alert("Jogo Cadastrado com Sucesso");
+      alert("Produto Cadastrado com Sucesso");
     })
     .catch((error) => console.error(error));
 }
@@ -56,7 +56,7 @@ function excluirProduto() {
     alert("Digite um ID para exluir");
     return;
   }
-  fetch(`http://localhost:8080/jogos/${searchId}`, {
+  fetch(`http://localhost:8080/produtos/${searchId}`, {
     method: "DELETE",
   })
     .then((response) => {
@@ -69,7 +69,7 @@ function excluirProduto() {
     })
     .catch((error) => {
       console.error(error);
-      alert("Erro ao excluir o Jogo");
+      alert("Erro ao excluir o Produto");
     });
 }
 
@@ -81,7 +81,7 @@ function pesquisarProduto() {
     return;
   }
 
-  fetch(`http://localhost:8080/jogos/${searchId}`)
+  fetch(`http://localhost:8080/produtos/${searchId}`)
     .then((response) => {
       if (response.status === 404) {
         throw new Error("Jogo não encontrado");
